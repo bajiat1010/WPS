@@ -1,0 +1,930 @@
+## LAB_1 ##
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Table</title>
+        <style>
+                table{
+                    background-color: rgb(187, 184, 184);
+                    width: 300px;
+                    height: 250px;
+                    border: 2px solid black;
+                    border-collapse: collapse;
+                }
+                td,th{
+                    border:2px solid black;
+                }
+                tr{
+                    text-align:center;
+                }
+        </style>
+    </head>
+    <body>
+        <table align="center">
+            <caption>A test table with merged cells</caption>
+            <tbody>
+                <tr>
+                    <th rowspan="2"><br></th>
+                    <th colspan="2">Average</th>
+                    <th rowspan="2">Red<br>eyes</th>
+                </tr>
+                <tr>
+                    <td><b>Height</b></td>
+                    <td><b>Weight</b></td>
+                </tr>
+                <tr>
+                    <td><b>Males</b></td>
+                    <td align="left">1.9</td>
+                    <td align="left">0.003</td>
+                    <td align="left">40%</td>
+                </tr>
+                <tr>
+                    <td><b>Females</b></td>
+                    <td align="left">1.7</td>
+                    <td align="left">0.002</td>
+                    <td align="left">43%</td>
+                </tr>                    
+            </tbody>
+        </table>
+    </body>
+</html>
+
+-------------------------------------------------------------------
+
+## LAB_2 ##
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Internal Links Page</title>
+    </head>
+    <body>
+        <h2>Internal Links Example</h2>
+        <p>"Following sections display different order list"</p>
+        <ol type="I">
+            <li><a href="#section1">Section-1</a></li>
+            <li><a href="#section2">Section-2</a></li>
+            <li><a href="#section3">Section-3</a></li>
+            <li><a href="#section4">Section-4</a></li>
+        </ol>
+        <hr>
+        <h2 id="section1">ordered list of list type "1"</h2>
+        <ol type="1">
+            <li>First Item</li>
+            <li>Second Item</li>
+            <li>Third Item</li>
+        </ol>
+        <a href="#top">Back to Top</a>
+        <hr>
+        <h2 id="section2">ordered list of list type "A"</h2>
+        <ol type="A">
+            <li>First Item</li>
+            <li>Second Item</li>
+            <li>Third Item</li>
+        </ol>
+        <a href="#top">Back to Top</a>
+        <hr>
+        <h2 id="section3">ordered list of list type "a"</h2>
+        <ol type="a">
+            <li>First Item</li>
+            <li>Second Item</li>
+            <li>Third Item</li>
+        </ol>
+        <a href="#top">Back to Top</a>
+        <hr>
+        <h2 id="section4">ordered list of list type "i"</h2>
+        <ol type="i">
+            <li>First Item</li>
+            <li>Second Item</li>
+            <li>Third Item</li>
+        </ol>
+        <a href="#top">Back to Top</a>
+        <hr>
+        <a href="#">Back to the top section</a>
+    </body>
+</html>
+
+--------------------------------------------------------------
+
+## LAB_3 ##
+
+(html code)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Info form</title>
+    <style>
+
+  div{ background-color: bisque;
+       width: 350px;
+       height: 300px;
+       text-align: center;
+       margin: auto;
+       padding: 4px;
+    }
+    h2{
+        text-align: center;
+    }
+    form{  display: block;
+            margin: auto;
+        }
+        button{
+            background-color: rgb(250, 230, 248);
+            font-size:15px;
+            border: radius 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Personal Details</h2>
+<form action="connect.php" method="POST">
+
+<label for="name">First name:</label>
+<input type="text" name="name" id="name" required><br><br>
+<label for="email">Email:</label>
+<input type="email" name="email" id="email"><br><br>
+<label for="phone">Phone Number:</label>
+<input type="tel" name="phone" id="phone" required><br><br>
+<label for="password">Password:</label>
+<input type="password" name="password" id="password"><br><br>
+<label for="gender">Gender:</label>
+<input type="radio" name="gender" id="Male" value="Male">Male
+<input type="radio" name="gender" id="Female" value="Female">Female<br><br>
+<button type="submit" name="submit">Submit</button>
+</div>
+</form>
+</body>
+</html>
+
+--------------
+
+(php code)
+
+<?php
+
+    $con=mysqli_connect("localhost","root","","test");
+
+    if(isset($_POST['submit'])){
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $phone=$_POST['phone'];
+        $password=$_POST['password'];
+        $gender=$_POST['gender'];
+
+        $sql=" INSERT INTO form3(name,email,phone,password,gender) values ('$name','$email','$phone','$password','$gender')";
+
+        $result=mysqli_query($con,$sql);
+        if($result==True){
+          echo "Data is Inserted";
+        }else{
+            echo "Not inserted";
+        }
+    }
+ 
+?>
+
+-------------------------------------------------------------------------
+
+## LAB_4 ##
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <script>
+    function validateForm() {
+      var name = document.getElementById('name').value;
+      var password = document.getElementById('password').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var nameRegex = /^[a-zA-Z]{6,}$/;
+      var passwordRegex = /^.{6,}$/;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var phoneRegex = /^\d{11}$/;
+      if (!name.match(nameRegex)) {
+        alert('Name should contain at least 6 alphabetic characters.');
+        return false;
+      }
+      if (!password.match(passwordRegex)) {
+        alert('Password should be at least 6 characters long.');
+        return false;
+      }
+      if (!email.match(emailRegex)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+      if (!phone.match(phoneRegex)) {
+        alert('Phone number should contain 10 digits only.');
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <form onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <label for="email">E-mail:</label>
+    <input type="text" id="email" name="email"><br><br>
+    <label for="phone">Phone number:</label>
+    <input type="text" id="phone" name="phone"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
+
+----------------------------------------------------------------------
+
+## LAB_5 ##
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Frameset Example</title>
+    </head>
+    <frameset cols="250,*,0" frameborder="1">
+            <frame src="ice.html" name="Left_vertical">
+            <frameset rows="400,350" frameborder="1">
+                <frame src="ice.html" name="right_top">
+                <frame src="it.html" name="right_bottom">
+            </frameset>
+    </frameset>
+</html>
+
+----------
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <title>ICE</title>
+    </head>
+    <body>
+        <h3>Dept. of ICE</h3>
+        <p>This is ice.html</p>
+    </body>
+</html>
+
+----------
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <title>IT</title>
+    </head>
+    <body>
+        <h3>Dept. of IT</h3>
+        <p>This is it.html</p>
+    </body>
+</html>
+
+-------------------------------------------------------------------
+
+## LAB_6 ##
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>For Loop iteration</title>
+    </head>
+    <body>
+        <h3 id="for loop"></h3>
+       <script>
+        var first=prompt("Enter the starting value:");
+        var last=prompt("Enter the ending value:");
+        let a=parseInt(first);
+        let b=parseInt(last);
+        for(i=a;i<=b;i++){
+            if(i==0){
+                document.write(i+" is Even");
+                document.write("<br>");
+            }
+             else if(i%2==0){
+                document.write(i+" is Even");
+                document.write("<br>");
+            }
+            else{
+                document.write(i+" is Odd");
+                document.write("<br>");
+            }
+        }
+        document.getElementById("for loop").innerHTML="Even and Odd numbers from "+first+" to " +last+" are:";
+       </script>
+    </body>
+</html>
+
+-----------------------------------------------------------------------
+
+## LAB_7 ##
+
+(php code)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Bill Calculator</title>
+</head>
+<body>
+    <h2>Electricity Bill Calculator</h2>
+    <form method="post" action="">
+        <label for="units">Enter Units Consumed:</label>
+        <input type="text" name="units" required><br><br>
+        <input type="submit" value="Calculate">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $units = $_POST['units'];
+
+        if (is_numeric($units)) {
+            $bill = 0;
+
+            if ($units < 0) {
+                echo "Units consumed cannot be negative.";
+            } elseif ($units <= 50) {
+                $bill = $units * 3.50;
+            } elseif ($units <= 100) {
+                $bill = 50 * 3.50 + ($units - 50) * 4.00;
+            } elseif ($units <= 200) {
+                $bill = 50 * 3.50 + 50 * 4.00 + ($units - 100) * 5.20;
+            } else {
+                $bill = 50 * 3.50 + 50 * 4.00 + 100 * 5.20 + ($units - 200) * 6.50;
+            }
+
+            echo "Electricity Bill for $units units is Taka. " . number_format($bill, 2);
+        } else {
+            echo "Please enter a valid numeric value for units.";
+        }
+    }
+    ?>
+</body>
+</html>
+
+------------------------------------------------------------------------------------
+
+## LAB_8 ## 
+
+(php code)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Calculator</title>
+    </head>
+    <body>
+        <h2>Simple Calculator</h2>
+        <form action="" method="post">
+            <label for="n1">First Number:</label>
+            <input type="text" name="n1" required><br><br>
+            <label for="n2">Second Number:</label>
+            <input type="text" name="n2" required><br><br>
+            <label for="operation">Select an operation:</label>
+            <select name="operation">
+                <option value="+">Addition</option>
+                <option value="-">Subtraction</option>
+                <option value="*">Multiplication</option>
+                <option value="/">Division</option>
+            </select><br><br>
+            <input type="submit" value="calculate"><br>
+        </form>
+        <?php
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $n1=$_POST["n1"];
+            $n2=$_POST["n2"];
+            $operation=$_POST["operation"];
+
+            switch($operation){
+                    case"+":
+                    $r=$n1+$n2;
+                    echo "Result: $n1 + $n2 = $r";
+                    break;
+                    case"-":
+                    $r=$n1-$n2;
+                    echo "Result: $n1 - $n2 = $r";
+                    break;
+                    case"*":
+                    $r=$n1*$n2;
+                    echo "Result: $n1 * $n2 = $r";
+                    break;
+                    case"/":
+                    if($n2!=0){
+                    $r=$n1/$n2;
+                    echo "Result: $n1 / $n2 = $r";
+                    }
+                    else{
+                    echo"Cannot divide by zero";
+                    }
+                    break;
+                    default:
+                    echo"Invalid Operation";    
+                    }
+           }
+     ?>
+    </body>
+</html>
+
+----------------------------------------------------------------------
+
+## LAB_9 ##
+
+( all php code )
+
+CREATE DATABASE Student;
+
+CREATE TABLE Semester_Reg (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Session VARCHAR(9) NOT NULL,
+    Phone_No VARCHAR(15),
+    City VARCHAR(255),
+    Gender ENUM('Male', 'Female') NOT NULL
+);
+
+======
+TASK 1,2
+======
+
+<?php
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+
+$conn = new mysqli($servername, $username, $password);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+// Create the "Student" database
+$sql = "CREATE DATABASE IF NOT EXISTS Student";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully<br>";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+
+// Use the "Student" database
+$conn->select_db("Student");
+
+// Create the "Semester_Reg" table
+$sql = "CREATE TABLE IF NOT EXISTS Semester_Reg (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Session VARCHAR(9) NOT NULL,
+    Phone_No VARCHAR(15),
+    City VARCHAR(255),
+    Gender ENUM('Male', 'Female') NOT NULL
+)";
+if ($conn->query($sql) === TRUE) {
+    echo "Table created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+// Close the connection
+$conn->close();
+?>
+
+======
+TASK 3
+======
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "student"; 
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Insert sample data
+$sql = "INSERT INTO Semester_Reg (Name, Session, Phone_No, City, Gender) VALUES ('Rajin', '2018-2019', '1234567890', 'Pabna', 'Male')";
+if ($conn->query($sql) === TRUE) {
+    echo "Sample data inserted successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close the connection
+$conn->close();
+?>
+
+======
+TASK 4
+======
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Records</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        /* Style for the container that holds the output */
+#output-container {
+    margin: 20px auto;
+    width: 60%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.record {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}
+
+.record label {
+    font-weight: bold;
+}
+
+.record p {
+    margin: 5px 0;
+}
+
+.record:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+    </style>
+</head>
+<body>
+    <div id="output-container">
+        <?php
+        $servername = "localhost"; 
+        $username = "root"; 
+        $password = ""; 
+        $database = "student"; 
+
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT * FROM Semester_Reg";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="record">';
+                echo '<label>ID:</label><p>' . $row["ID"] . '</p>';
+                echo '<label>Name:</label><p>' . $row["Name"] . '</p>';
+                echo '<label>Session:</label><p>' . $row["Session"] . '</p>';
+                echo '<label>Phone_No:</label><p>' . $row["Phone_No"] . '</p>';
+                echo '<label>City:</label><p>' . $row["City"] . '</p>';
+                echo '<label>Gender:</label><p>' . $row["Gender"] . '</p>';
+                echo '</div>';
+            }
+        } else {
+            echo "No records found";
+        }
+
+        $conn->close();
+        ?>
+    </div>
+</body>
+</html>
+
+======
+TASK 5
+======
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Record Result</title>
+</head>
+<body>
+    <h2>Delete Record Result</h2>
+<?php
+$servername = "localhost";
+$username = "root";  
+$password = ""; 
+$database = "student";
+
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$id_to_delete = 1; 
+
+$sql = "DELETE FROM Semester_Reg WHERE ID = $id_to_delete";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record with ID $id_to_delete deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+$conn->close();
+?>
+<p><a href="view_records.php">View Records</a></p>
+</body>
+</html>
+
+======
+TASK 6
+======
+
+<?php
+$servername = "localhost"; 
+$username = "root"; 
+$password="";
+$database = "student"; 
+$conn = new mysqli($servername, $username, $password, $database);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$id_to_update = 2; 
+$sql = "UPDATE Semester_Reg SET Name = 'Pranto' WHERE ID = $id_to_update";
+if ($conn->query($sql) === TRUE) {
+    echo "Record with ID $id_to_update updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+$conn->close();
+?>
+
+----------------------------------------------------------------------------------------
+
+## LAB_10 ##
+
+( all php code )
+
+======
+TASK 1,2
+======
+
+<?php
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+
+$conn = new mysqli($servername, $username, $password);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$sql = "CREATE DATABASE IF NOT EXISTS Programmer";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully<br>";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+$conn->select_db("Programmer");
+
+$sql = "CREATE TABLE IF NOT EXISTS Stu_Reg (
+      ID VARCHAR(30) PRIMARY KEY,
+      Name TEXT,
+      Image VARCHAR(400),
+      Password VARCHAR(20) NOT NULL 
+)";
+if ($conn->query($sql) === TRUE) {
+    echo "Table created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+$conn->close();
+?>
+
+======
+TASK 3
+======
+
+<?php
+
+    $conn=mysqli_connect("localhost","root","","programmer");
+if(isset($_POST["submit"])){
+    $id=$_POST['id'];
+    $name=$_POST['name'];
+    $pass=$_POST['pass'];
+    $imge=$_FILES['imge']['name'];
+
+    // $tempname=$_FILES['imge']['temp_name'];
+    // $uploc='images/'.$imge;
+
+    $sql = "INSERT INTO Stu_Reg(ID, Name, Image, Password) VALUES ('$id', '$name', '$imge', '$pass')";
+
+    $result=mysqli_query($conn,$sql);
+
+    if($result==TRUE){
+        echo '<div class="alert alert-success" role="alert">
+         <strong>Success></strong> Data  inserted Succesfully
+      </div>';
+        // move_uploaded_file($tempname,$uploc);
+        echo "Data Submited";
+    }else{
+        echo "Not Submited";
+    }
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class=" container mt-5 d-flex justify-content-center">
+        <form action="" method="POST" enctype="multipart/form-data" >
+            <label for="">ID</label>
+            <input type="text" name="id" ><br><br>
+            <label for="">Name</label>
+            <input type="text" name="name"><br><br>
+            <label for="">Image</label>
+            <input type="file" name="imge"><br><br>
+            <label for="password">Password</label>
+            <input type="password" name="pass" id="password" required><br><br>
+            <button type="submit" name="submit">Button</button>
+        </form>
+    </div>
+
+    <div class="container mt-5 d-flex justify-content-center" >
+        <table class="table table-bordered w-50" >
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" >ID</th>
+                    <th scope="col" >Name</th>
+                    <th scope="col" >Image</th>
+                </tr>
+            </thead >
+            <tbody>
+                <!-- <?php
+                $sql="Select * from stu_reg ";
+                $result=mysqli_query($conn,$sql);
+                $row=mysqli_fetch_assoc($result);
+                while($row){
+                    $id=$row["id"];
+                    $name=$row["name"];
+                    $imge=$row['imge'];
+                }
+                echo '<tr>
+                    <td '.$id.'</td>
+                    <td>'.$name.'</td>
+                    <td>'.$imge.'</td>
+                </tr> ';
+        
+                ?> -->
+
+                <tr>
+                    <td scope="row">1</td>
+                    <td>Mark</td>
+                    <td>otto</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+</body>
+</html>
+
+======
+TASK 4
+======
+
+<?php
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$database = "Programmer";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM Stu_Reg";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["ID"] . "<br>";
+        echo "Name: " . $row["Name"] . "<br>";
+        echo "Image: " . $row["Image"] . "<br>";
+        echo "Password: " . $row["Password"] . "<br>";
+        echo "----------------------<br>";
+    }
+} else {
+    echo "No records found";
+}
+$conn->close();
+?>
+
+======
+TASK 5
+======
+
+<?php
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$database = "Programmer"; 
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$id_to_delete = "22"; 
+
+$sql = "DELETE FROM Stu_Reg WHERE ID = '$id_to_delete'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record with ID $id_to_delete deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+
+$conn->close();
+?>
+
+======
+TASK 5+
+======
+
+<?php
+// Establish a database connection (Make sure to provide your actual database credentials)
+$mysqli = new mysqli("localhost", "root", "", "Programmer");
+
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Sample data to insert
+$id = "user123";
+$name = "John Doe";
+$image = "profile.jpg";
+$password = password_hash("secretpassword", PASSWORD_DEFAULT); // Hash the password
+
+// Insert data into the table
+$query = "INSERT INTO Stu_Reg (ID, Name, Image, Password) VALUES (?, ?, ?, ?)";
+$stmt = $mysqli->prepare($query);
+$stmt->bind_param("ssss", $id, $name, $image, $password);
+
+if ($stmt->execute()) {
+    echo "Data inserted successfully.";
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
+$mysqli->close();
+?>
+
+
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
