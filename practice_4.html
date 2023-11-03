@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <script>
+    function validateForm() {
+      var name = document.getElementById('name').value;
+      var password = document.getElementById('password').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var nameRegex = /^[a-zA-Z]{6,}$/;
+      var passwordRegex = /^.{6,}$/;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var phoneRegex = /^\d{11}$/;
+      if (!name.match(nameRegex)) {
+        alert('Name should contain at least 6 alphabetic characters.');
+        return false;
+      }
+      if (!password.match(passwordRegex)) {
+        alert('Password should be at least 6 characters long.');
+        return false;
+      }
+      if (!email.match(emailRegex)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+      if (!phone.match(phoneRegex)) {
+        alert('Phone number should contain 10 digits only.');
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <form onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <label for="email">E-mail:</label>
+    <input type="text" id="email" name="email"><br><br>
+    <label for="phone">Phone number:</label>
+    <input type="text" id="phone" name="phone"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

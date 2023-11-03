@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>For Loop iteration</title>
+    </head>
+    <body>
+        <h3 id="for loop"></h3>
+       <script>
+        var first=prompt("Enter the starting value:");
+        var last=prompt("Enter the ending value:");
+        let a=parseInt(first);
+        let b=parseInt(last);
+        for(i=a;i<=b;i++){
+            if(i==0){
+                document.write(i+" is Even");
+                document.write("<br>");
+            }
+             else if(i%2==0){
+                document.write(i+" is Even");
+                document.write("<br>");
+            }
+            else{
+                document.write(i+" is Odd");
+                document.write("<br>");
+            }
+        }
+        document.getElementById("for loop").innerHTML="Even and Odd numbers from "+first+" to " +last+" are:";
+       </script>
+    </body>
+</html>

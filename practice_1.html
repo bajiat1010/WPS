@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Table</title>
+        <style>
+                table{
+                    background-color: rgb(187, 184, 184);
+                    width: 300px;
+                    height: 250px;
+                    border: 2px solid black;
+                    border-collapse: collapse;
+                }
+                td,th{
+                    border:2px solid black;
+                }
+                tr{
+                    text-align:center;
+                }
+        </style>
+    </head>
+    <body>
+        <table align="center">
+            <caption>A test table with merged cells</caption>
+            <tbody>
+                <tr>
+                    <th rowspan="2"><br></th>
+                    <th colspan="2">Average</th>
+                    <th rowspan="2">Red<br>eyes</th>
+                </tr>
+                <tr>
+                    <td><b>Height</b></td>
+                    <td><b>Weight</b></td>
+                </tr>
+                <tr>
+                    <td><b>Males</b></td>
+                    <td align="left">1.9</td>
+                    <td align="left">0.003</td>
+                    <td align="left">40%</td>
+                </tr>
+                <tr>
+                    <td><b>Females</b></td>
+                    <td align="left">1.7</td>
+                    <td align="left">0.002</td>
+                    <td align="left">43%</td>
+                </tr>                    
+            </tbody>
+        </table>
+    </body>
+</html>
