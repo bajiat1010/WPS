@@ -1,0 +1,10 @@
+CREATE DATABASE Student;
+
+CREATE TABLE Semester_Reg (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Session VARCHAR(9) NOT NULL,
+    Phone_No VARCHAR(15),
+    City VARCHAR(255),
+    Gender ENUM('Male', 'Female') NOT NULL
+);
